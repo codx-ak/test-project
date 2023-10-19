@@ -1,11 +1,11 @@
-import React from 'react'
-import './loading.css'
+import React from "react";
+import "./loading.css";
 const page = () => {
   return (
     <div id="preloader">
-  <div id="loader"></div>
-</div>
-  )
-}
+      <div id="loader"></div>
+    </div>
+  );
+};
 
-export default page
+export default page;

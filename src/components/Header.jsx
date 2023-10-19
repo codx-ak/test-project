@@ -11,14 +11,15 @@ import { FiMenu } from "react-icons/fi";
 import { HiHome } from "react-icons/hi";
 import { FaOpencart, FaShop } from "react-icons/fa6";
 import { BiLogoBlogger } from "react-icons/bi";
-import { VscFeedback } from "react-icons/vsc";
 import { IoTrailSignOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "./header.css";
-import {Authenticate} from "../Auth/AuthContext";
+import { Authenticate } from "../Auth/AuthContext";
 const Header = () => {
-  const {IsAuth}=useContext(Authenticate)
+  //auth value checking
+  const { IsAuth } = useContext(Authenticate);
 
+  //dropdown menu condition
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -30,15 +31,10 @@ const Header = () => {
   };
   return (
     <nav>
-      <Typography
-        variant="h5"
-        component="div"
-        color='red'
-      >
+      <Typography variant="h5" component="div" color="red">
         Codx.
       </Typography>
       <Box>
-        
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -66,37 +62,37 @@ const Header = () => {
         >
           <Link to="/">
             <MenuItem onClick={handleClose}>
-              <Button startIcon={<HiHome/>}>Home</Button>
+              <Button startIcon={<HiHome />}>Home</Button>
             </MenuItem>
           </Link>
           <Link to="/product">
             <MenuItem onClick={handleClose}>
-              <Button startIcon={<FaShop/>}>Products</Button>
+              <Button startIcon={<FaShop />}>Products</Button>
             </MenuItem>
           </Link>
           <Link to="/cart">
             <MenuItem onClick={handleClose}>
-              <Button startIcon={<FaOpencart/>}>Cart</Button>
+              <Button startIcon={<FaOpencart />}>Cart</Button>
             </MenuItem>
           </Link>
           <Link to="/blog">
             <MenuItem onClick={handleClose}>
-              <Button startIcon={<BiLogoBlogger/>}>Blogs</Button>
+              <Button startIcon={<BiLogoBlogger />}>Blogs</Button>
             </MenuItem>
           </Link>
-          {
-            IsAuth ? <Link to="/logout">
-            <MenuItem onClick={handleClose}>
-              <Button startIcon={<IoTrailSignOutline/>}>Logout</Button>
-            </MenuItem>
-          </Link> :<Link to="/login">
-            <MenuItem onClick={handleClose}>
-              <Button startIcon={<IoTrailSignOutline/>}>Login</Button>
-            </MenuItem>
-          </Link>
-          }
-          
-          
+          {IsAuth ? (
+            <Link to="/logout">
+              <MenuItem onClick={handleClose}>
+                <Button startIcon={<IoTrailSignOutline />}>Logout</Button>
+              </MenuItem>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <MenuItem onClick={handleClose}>
+                <Button startIcon={<IoTrailSignOutline />}>Login</Button>
+              </MenuItem>
+            </Link>
+          )}
         </Menu>
       </Box>
     </nav>

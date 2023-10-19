@@ -1,16 +1,17 @@
-.login{
+.login {
     height: 80vh;
     display: flex;
     justify-content: space-between;
     padding: 2em;
-    background-image:linear-gradient( to right, rgba(85, 83, 44, 0.9), rgba(181, 187, 100, 0.1) ), url(../assets/banner_1.jpg);
+    background-image: linear-gradient(to right, rgba(85, 83, 44, 0.9), rgba(181, 187, 100, 0.1)), url(../assets/banner_1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 2em;
     flex-flow: row wrap;
     box-sizing: border-box;
 }
-.login-form{
+
+.login-form {
     margin-top: 2em;
     background-color: white;
     display: flex;
@@ -20,44 +21,54 @@
     align-items: center;
     width: 25em;
     border-radius: 10px;
-    padding:20px 10px;
+    padding: 20px 10px;
     color: #2c3855 !important;
     border-color: #2c3855 !important;
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
 }
-.login-form input{
+
+.login-form input {
     width: 300px;
     display: block;
 }
-.login-form label,.login-form p{
+
+.login-form label,
+.login-form p {
     font-size: 14px;
 }
-.login button{
+
+.login button {
     background-color: #2c3855 !important;
 }
-.login a{
+
+.login a {
     text-decoration: none;
     color: #2c3855;
 }
-.login .header-content{
+
+.login .header-content {
     margin-top: 10px;
     color: white;
     max-width: 500px;
 }
-.header-content h2{
+
+.header-content h2 {
     padding-bottom: 20px;
 }
 
-@media (max-width:500px){
-    .login{
+@media (max-width:500px) {
+    .login {
         border-radius: 0;
     }
-    .login-form input{
+
+    .login-form input {
         width: 250px;
     }
+
     .login .header-content {
         display: none;
     }
+
     .login-form {
         height: fit-content;
     }

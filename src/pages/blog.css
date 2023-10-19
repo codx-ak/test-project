@@ -39,10 +39,12 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-.blog-item a:hover h6{
+
+.blog-item a:hover h6 {
     color: orange;
 }
-.blog-item .blog-info{
+
+.blog-item .blog-info {
     padding: 2px 5px;
     display: flex;
     align-items: center;
@@ -50,9 +52,11 @@
     font-size: 0.8em;
     overflow: hidden;
 }
-.blog-info svg{
+
+.blog-info svg {
     font-size: 15px;
 }
-.blog-info .auther{
+
+.blog-info .auther {
     width: 100px;
 }
