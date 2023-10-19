@@ -8,6 +8,7 @@ import {BsFillPersonFill} from 'react-icons/bs'
 const Blogs = () => {
   const [Blogs, setBlogs] = useState([]);
   useEffect(() => {
+    //blogs data fetch to api and storing to DB
     BlogData().then((value) => setBlogs(value.articles));
   }, [Blogs]);
   return (
@@ -22,7 +23,7 @@ const Blogs = () => {
               <img width='100%' height={150} src={blog.urlToImage} alt={blog.title} />
               <Link target="_blank" to={blog.url}>
               <Typography variant="h6">{blog.title}</Typography>
-              <Typography component='p' className="blog-info"><CiCalendarDate/> {blog.publishedAt.slice(0,10)} &nbsp;&nbsp; <BsFillPersonFill/>{blog.author}</Typography>
+              <Typography component='p' className="blog-info"><CiCalendarDate/> {blog.publishedAt.slice(0,10)} &nbsp;&nbsp; <BsFillPersonFill/><span className="auther">{blog.author}</span></Typography>
               <Typography component="p">{blog.description}</Typography>
               </Link>
             </Card>

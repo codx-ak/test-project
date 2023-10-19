@@ -3,11 +3,12 @@ import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Loading from '../components/Loading'
 
-const Login=React.lazy(()=>import('../Auth/Login'))
+//lasy way to import pages
 const Products=React.lazy(()=>import('../pages/Products'))
-const Cart=React.lazy(()=>import('../pages/Cart'))
-const Logout=React.lazy(()=>import('../Auth/Logout'))
 const Blog=React.lazy(()=>import('../pages/Blogs'))
+const Cart=React.lazy(()=>import('../pages/Cart'))
+const Login=React.lazy(()=>import('../Auth/Login'))
+const Logout=React.lazy(()=>import('../Auth/Logout'))
 
 const PageRoutes = () => {
   return (

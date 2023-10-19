@@ -14,12 +14,7 @@ const Home = () => {
       <Typography component='p'>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.</Typography>
       </Box>
       </section>
-      <section className='about'>
-        <Box className="about-content">
-        <Typography variant='h4' component='h4'>Lorem ipsum dolor sit amet.</Typography>
-      <Typography component='p'>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet. Lorem ipsum dolor Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis officia nemo nisi incidunt. Dolorem, nesciunt ad dolore voluptatum deserunt veritatis numquam, tempora repellendus veniam facilis cum eius illum vel. Aut velit fugiat odio quod eius aliquam quasi quae minus dolorum! sit amet consectetur adipisicing elit.</Typography>
-        </Box>
-      </section>
+      
       <section className='benifits'>
         <Box className='benifits-item'>
         <Typography component='div'><TbTruckDelivery/></Typography>

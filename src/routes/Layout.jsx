@@ -6,8 +6,13 @@ import PageRoutes from './PageRoutes'
 const Layout = () => {
   return (
     <>
+    {/* navbar */}
     <Header/>
+    
+    {/* page routes  */}
     <PageRoutes/>
+
+    {/* footer  */}
     <Footer/>
     </>
   )

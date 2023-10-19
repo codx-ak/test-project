@@ -1,6 +1,6 @@
 .blogs {
     display: flex !important;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     flex-flow: row wrap;
     gap: 15px;
@@ -32,6 +32,7 @@
     color: gray;
     padding: 0 5px;
     text-align: justify;
+    font-size: 0.9em;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -46,18 +47,12 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 13px;
+    font-size: 0.8em;
     overflow: hidden;
 }
 .blog-info svg{
     font-size: 15px;
 }
-
-@media (max-width:500px){
-    .blogs {
-        justify-content: center;
-    }
-    .blog-item p {
-        font-size: 0.9em;
-    }
+.blog-info .auther{
+    width: 100px;
 }

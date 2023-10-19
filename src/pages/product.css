@@ -1,6 +1,6 @@
 .products {
     display: flex !important;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     flex-flow: row wrap;
     gap: 15px;

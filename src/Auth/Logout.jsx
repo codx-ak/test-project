@@ -1,17 +1,16 @@
-import React, { useContext, useEffect } from 'react'
-import { Authenticate } from './AuthContext'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect } from "react";
+import { Authenticate } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-    const {setAuth}=useContext(Authenticate)
-    const navigate=useNavigate()
-    useEffect(()=>{
-        setAuth(false)
-        navigate('/')
-    },[])
-  return (
-    <></>
-  )
-}
+  //auth function and page navigate to home page
+  const { setAuth } = useContext(Authenticate);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setAuth(false);
+    navigate("/");
+  });
+  return <></>;
+};
 
-export default Logout
+export default Logout;

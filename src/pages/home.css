@@ -1,8 +1,8 @@
 .home{
-    display: flex !important;
+    display: flex;
     justify-content: center;
     flex-flow: column nowrap; 
-    align-items: end;
+    align-items: flex-end;
     background-image: url(../assets/download.webp);
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,27 +11,6 @@
 }
 .home .home-content{
     width: 50%;
-}
-.about{
-    height: 400px;
-    overflow: hidden;
-    background-image: url(../assets/shoe.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-x:80%;
-    margin: 50px 0;
-}
-.about .about-content{
-    padding: 20px;
-    width: 35vw;
-    text-align: justify;
-}
-
-.about-content h4{
-    padding: 10px;
-}
-.about-content p{
-    color: gray;
 }
 
 .benifits{
@@ -75,8 +54,5 @@
         justify-content: end;
         padding-bottom: 20px;
         height: 400px;
-    }
-    .about {
-        display: none;
     }
 }

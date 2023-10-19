@@ -7,8 +7,10 @@ import { AddCart } from '../Redux/store/CartSlice';
 const Products = () => {
   const [Product, setProducts] = useState([]);
   useEffect(() => {
+    //getting produc data and update product store
     ProductData().then((value) => setProducts(value));
   }, [Product]);
+  //dispatch function to calling redux actions
   const dispatch=useDispatch()
   return (
     <>

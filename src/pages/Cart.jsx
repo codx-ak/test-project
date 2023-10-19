@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux'
 import './cart.css'
 
 const Cart = () => {
+  //reduc store to getting values
   const CartItems=useSelector(state=>state.CartStore.value)
   return (
     <Container sx={{minHeight:'80vh'}}>

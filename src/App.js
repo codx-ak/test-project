@@ -6,8 +6,13 @@ import AuthContext from './Auth/AuthContext'
 const App = () => {
   return (
     <Provider store={store}>
+
+      {/* auth config  */}
       <AuthContext>
+
+        {/* page layout  */}
       <Layout/>
+      
       </AuthContext>
     </Provider>
   )
