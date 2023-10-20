@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { Authenticate } from "./AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -31,13 +32,13 @@ const Login = () => {
       if (e.Psw === "1234") {
         //auth change value and page navigate to home screen
         setAuth(true);
+        toast.success("Login Successfully!");
         navigate("/");
-        alert("Login Success");
       } else {
-        alert("Invalid");
+        toast.error("Invalid Password");
       }
     } else {
-      alert("Email is Not Valid");
+      toast.error("Invalid UserName");
     }
   }
 

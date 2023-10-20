@@ -12,6 +12,7 @@ import { HiHome } from "react-icons/hi";
 import { FaOpencart, FaShop } from "react-icons/fa6";
 import { BiLogoBlogger } from "react-icons/bi";
 import { IoTrailSignOutline } from "react-icons/io5";
+import { LuListTodo } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import "./header.css";
 import { Authenticate } from "../Auth/AuthContext";
@@ -68,6 +69,11 @@ const Header = () => {
           <Link to="/product">
             <MenuItem onClick={handleClose}>
               <Button startIcon={<FaShop />}>Products</Button>
+            </MenuItem>
+          </Link>
+          <Link to="/todo">
+            <MenuItem onClick={handleClose}>
+              <Button startIcon={<LuListTodo />}>todo</Button>
             </MenuItem>
           </Link>
           <Link to="/cart">

@@ -7,7 +7,7 @@ import {
   RemoveCart,
   ProductCountAdd,
   ProductCountDel,
-} from "../Redux/store/CartSlice";
+} from "../../Redux/store/CartSlice";
 
 const CartItem = ({ Product }) => {
   const dispatch = useDispatch();

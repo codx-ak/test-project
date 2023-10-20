@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Box, Typography } from "@mui/material";
-import CartItem from "../components/CartItem";
+import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import "./cart.css";
 
