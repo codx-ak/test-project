@@ -1,6 +1,41 @@
-# Getting Started with Create React App
+# API Test Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Products
+* TODO
+* Blog
+
+
+# API Documentaion
+
+## Product API Routes :
+
+Source : https://fakestoreapi.com/
+
+* Get List Products :   https://fakestoreapi.com/products
+
+## Blog API Routes :
+
+Source : https://saurav.tech/NewsAPI
+
+* Get List Blogs :   https://saurav.tech/NewsAPI/top-headlines/category/health/in.json
+
+## ToDo API Routes :
+
+Its a Own Json server.
+
+Source : https://codx-json-server.vercel.app
+
+* Get List ToDo :   https://codx-json-server.vercel.app/todo
+
+* Create ToDo (POST method) :   https://codx-json-server.vercel.app/todo/
+
+* update ToDo by ID (PATCH method) :   https://codx-json-server.vercel.app/todo/:id/
+
+* Delete ToDo with ID :   https://codx-json-server.vercel.app/todo/:id/
+
+
+
+
 
 ## Available Scripts
 
