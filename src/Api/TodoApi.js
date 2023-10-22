@@ -35,7 +35,7 @@ export const DeleteTodoData = async (id) => {
 };
 
 //Patch method
-export const UpdateTodoData = async (id, data) => {
+export const UpdateTodoData = async ({id,data}) => {
   await axios
     .patch(`${API_URL}/${id}`, data, {
       headers: {

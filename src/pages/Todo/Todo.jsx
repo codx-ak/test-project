@@ -1,6 +1,6 @@
 import {
-  Box,
   Button,
+  Card,
   Container,
   Table,
   TableBody,
@@ -8,81 +8,109 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField
+  TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import TodoItem from "./TodoItem";
-import "./todo.css";
+import React from "react";
 import { BsListTask } from "react-icons/bs";
 import { useForm } from "react-hook-form";
-import { useDispatch} from "react-redux";
-import { AddTodo } from "../../Redux/store/TodoSlice";
-import { TodoData } from "../../Api/TodoApi";
+import "./todo.css";
+import {
+  AddTodoData,
+  DeleteTodoData,
+  TodoData,
+  UpdateTodoData,
+} from "../../Api/TodoApi";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import Loading from "../../components/Loading";
+import { toast } from "react-toastify";
+import TodoItem from "./TodoItem";
 
 const Todo = () => {
-  //Todo State
-  const [ToDovalue,setTodo]=useState([{id:1,title:'lorem'}])
+    const queryClient=useQueryClient()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
-  //todo adding funcion
-  function todoadding(e) {
-    dispatch(AddTodo(e.title));
-    //getting Todo data and update todo store
-    TodoData().then(data=>setTodo(data))
-  }
 
-  // useEffect(()=>{
-  //   //getting Todo data and update todo store
-  //   TodoData().then(data=>setTodo(data))
-  // },[])
+  const { isLoading, data } = useQuery({
+    queryKey: ["todo"],
+    queryFn: TodoData,
+  });
+
+  const {mutateAsync:addTodoMutation}=useMutation({
+    mutationFn: AddTodoData,
+    onSuccess:()=> {
+      queryClient.invalidateQueries(['todo'])
+       toast.success("ToDo Added");
+      }
+    })
+
+  const {mutateAsync:updateTodoMutation}=useMutation({
+    mutationFn: UpdateTodoData,
+    onSuccess:()=> {
+        queryClient.invalidateQueries(['todo'])
+        toast.success("ToDo Updated");
+    }
+      })
+
+  const {mutateAsync:deleteTodoMutation}=useMutation({
+    mutationFn: DeleteTodoData,
+    onSuccess:()=>{
+        queryClient.invalidateQueries(['todo'])
+        toast.error("ToDo Deleted");
+    } 
+      })
+  const ToDoValue = data || [];
+
+  if(isLoading) return <Loading/>
   
   return (
     <Container className="todo">
-      <Box className="addTodo">
-        <form action="" onSubmit={handleSubmit(todoadding)} method="post">
-          <TextField
-            {...register("title", { required: "Enter title" })}
-            error={errors.title ? true : false}
-            variant="outlined"
-            placeholder="Type here"
-            type="text"
-          />
-          <Button
-            type="submit"
-            startIcon={<BsListTask />}
-            variant="contained"
-            color="warning"
-          >
-            Add ToDO
-          </Button>
-        </form>
-      </Box>
-
-      <TableContainer>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">ID</TableCell>
-              <TableCell align="center">Title</TableCell>
-              <TableCell align="center">Process</TableCell>
-              <TableCell align="center"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {ToDovalue.length ?
-              ToDovalue.map((data, index) => {
-                return <TodoItem todo={{data,setTodo}} key={index} />;
-              }) : <TableRow>
-                <TableCell colSpan={4} align="center"> No Items Available</TableCell>
+      <form action="" onSubmit={handleSubmit(data=>addTodoMutation({...data,completed: false}))} method="post">
+        <TextField
+          {...register("title", { required: "Enter title" })}
+          error={errors.title ? true : false}
+          variant="outlined"
+          placeholder="Type here"
+          autoComplete='true'
+          type="text"
+        />
+        <Button
+          type="submit"
+          startIcon={<BsListTask />}
+          variant="contained"
+          color="warning"
+        >
+          Add ToDO
+        </Button>
+      </form>
+      <Card variant="outlined">
+        <TableContainer>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Title</TableCell>
+                <TableCell align="center">Process</TableCell>
               </TableRow>
-              }
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {ToDoValue.length ? (
+                ToDoValue.map((todo , index) => {
+                  return <TodoItem options={{ todo,deleteTodoMutation,updateTodoMutation }} key={index} />;
+                })
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={2} align="center">
+                    {" "}
+                    No Items Available
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Card>
     </Container>
   );
 };

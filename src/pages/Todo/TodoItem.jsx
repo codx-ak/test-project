@@ -14,13 +14,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { MdDelete } from "react-icons/md";
-import { LuClipboardEdit } from "react-icons/lu";
-import { useDispatch } from "react-redux";
-import { RemoveTodo, UpdateTodo } from "../../Redux/store/TodoSlice";
+import { MdOutlineClear } from "react-icons/md";
+import { LuListTodo } from "react-icons/lu";
+
 import { useForm } from "react-hook-form";
-import { TodoData } from "../../Api/TodoApi";
-import { Link } from "react-router-dom";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -31,51 +29,38 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const TodoItem = ({ todo,setTodo }) => {
-  //User Details View
-  const [open, setOpen] = React.useState(false);
+const TodoItem = ({options}) => {
+    const {todo,deleteTodoMutation,updateTodoMutation}=options
+    const [open, setOpen] = React.useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
 
   function todoupdate(e) {
-    dispatch(UpdateTodo({ id: todo.id, data: e }));
+    const updateData={
+      title:e.title,
+      completed: e.status === 'true' ? true : false,
+    }
+    updateTodoMutation({id:todo.id,data:updateData})
     setOpen(false);
-    //getting Todo data and update todo store
-    TodoData().then(data=>setTodo(data))
   }
-
-  function tododelete(id){
-    dispatch(RemoveTodo(id))
-    //getting Todo data and update todo store
-    TodoData().then(data=>setTodo(data))
-  }
-
   return (
     <React.Fragment>
-      <TableRow hover tabIndex={-1}>
-        <TableCell align="center">{todo.id}</TableCell>
+      <TableRow hover sx={{cursor:'pointer'}}>
         <TableCell className="title-cell" align="center">
           {todo.title}
         </TableCell>
-        <TableCell
-          align="center"
-          sx={{ color: todo.completed === true ? "green" : "red" }}
-        >
-          {todo.completed ? "completed" : "Pending"}
-        </TableCell>
+        
         <TableCell align="center">
           <IconButton onClick={() => setOpen(true)}>
-            <LuClipboardEdit />
+            <LuListTodo />
           </IconButton>
           <IconButton
-            onClick={() => tododelete(todo.id)}
-            color="error"
+            onClick={() => deleteTodoMutation(todo.id)}
           >
-            <MdDelete />
+            <MdOutlineClear />
           </IconButton>
         </TableCell>
       </TableRow>
@@ -113,7 +98,7 @@ const TodoItem = ({ todo,setTodo }) => {
                 labelId="status-label"
                 label="Status"
                 error={errors.status ? true : false}
-                defaultValue=""
+                defaultValue={todo.completed ? "true" :'false'}
               >
                 <MenuItem value="true">Completed</MenuItem>
                 <MenuItem value="false">Pending</MenuItem>
@@ -127,7 +112,6 @@ const TodoItem = ({ todo,setTodo }) => {
             alignItems: "center",
           }}
         >
-          {/* <Link to="/todo">cancel</Link> */}
           <Button onClick={() => setOpen(false)} type="text">Cancel</Button>
           <Button type="submit" variant="contained" color="warning">
           Update ToDO
@@ -138,7 +122,7 @@ const TodoItem = ({ todo,setTodo }) => {
         </Card>
       </Modal>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default TodoItem;
+export default TodoItem
