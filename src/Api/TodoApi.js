@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //product api from "https://codx-json-server.vercel.app
 const API_URL = "https://codx-json-server.vercel.app/todo";
@@ -9,7 +10,7 @@ export const TodoData = async () => {
     const response = await axios.get(API_URL);
     return response.data;
   } catch (err) {
-    console.log(err);
+    toast.error("Somthing Wrong!");
   }
 };
 

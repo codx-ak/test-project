@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //news api from https://newsapi.org/
 const API_URL =
@@ -10,6 +11,6 @@ export const BlogData = async () => {
     const response = await axios.get(API_URL);
     return response.data.articles;
   } catch (err) {
-    console.log(err);
+    toast.error("Somthing Wrong!");
   }
 };

@@ -1,17 +1,10 @@
 # API Test Project
 
-* Products
 * TODO
 * Blog
 
 
 # API Documentaion
-
-## Product API Routes :
-
-Source : https://fakestoreapi.com/
-
-* Get List Products :   https://fakestoreapi.com/products
 
 ## Blog API Routes :
 
