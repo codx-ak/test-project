@@ -1,9 +1,12 @@
 import {
   Box,
   Button,
+  Card,
   Checkbox,
   Container,
   FormControlLabel,
+  FormGroup,
+  Modal,
   TextField,
   Typography,
 } from "@mui/material";
@@ -14,7 +17,21 @@ import "./login.css";
 import { Authenticate } from "./AuthContext";
 import { toast } from "react-toastify";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 270,
+  bgcolor: "white",
+  boxShadow: 24,
+  p: 4,
+};
+
 const Login = () => {
+  //User Details View
+  const [open, setOpen] = React.useState(false);
+
   const {
     register,
     handleSubmit,
@@ -79,11 +96,8 @@ const Login = () => {
           label="Enter Password"
           type="password"
         />
-        <FormControlLabel
-          sx={{ width: "100%", fontSize: "14px", marginLeft: 5 }}
-          control={<Checkbox color="success" />}
-          label="Remember Me"
-        />
+        <Button className="hint-btn" onClick={() => setOpen(true)}>Check Hint </Button>
+        
         <Box
           sx={{
             width: "100%",
@@ -98,6 +112,30 @@ const Login = () => {
           </Button>
         </Box>
       </form>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-modal-title"
+      >
+        <Card sx={style}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+          >
+            UserName
+          </Typography>
+          <Typography component='p'>user@gmail.com</Typography>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            marginTop={5}
+          >
+            Password
+          </Typography>
+          <Typography component='p'>1234</Typography>
+          
+        </Card>
+      </Modal>
     </Container>
   );
 };
