@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "./routes/Layout";
-import { Provider } from "react-redux";
-import { store } from "./Redux/config/StoreConfig";
 import AuthContext from "./Auth/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { QueryClientProvider,QueryClient } from "@tanstack/react-query";
+const clientQuery=new QueryClient();
 const App = () => {
   return (
-    <Provider store={store}>
+    <QueryClientProvider client={clientQuery}>
       <ToastContainer
         autoClose={3000}
         style={{width:250}}
@@ -22,7 +22,7 @@ const App = () => {
         {/* page layout  */}
         <Layout />
       </AuthContext>
-    </Provider>
+    </QueryClientProvider>
   );
 };
 
