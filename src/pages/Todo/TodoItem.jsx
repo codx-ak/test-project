@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Button,
   Card,
   FormControl,
@@ -18,6 +19,8 @@ import { LuClipboardEdit } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 import { RemoveTodo, UpdateTodo } from "../../Redux/store/TodoSlice";
 import { useForm } from "react-hook-form";
+import { TodoData } from "../../Api/TodoApi";
+import { Link } from "react-router-dom";
 const style = {
   position: "absolute",
   top: "50%",
@@ -28,7 +31,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo,setTodo }) => {
   //User Details View
   const [open, setOpen] = React.useState(false);
   const {
@@ -37,9 +40,18 @@ const TodoItem = ({ todo }) => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
+
   function todoupdate(e) {
     dispatch(UpdateTodo({ id: todo.id, data: e }));
     setOpen(false);
+    //getting Todo data and update todo store
+    TodoData().then(data=>setTodo(data))
+  }
+
+  function tododelete(id){
+    dispatch(RemoveTodo(id))
+    //getting Todo data and update todo store
+    TodoData().then(data=>setTodo(data))
   }
 
   return (
@@ -60,7 +72,7 @@ const TodoItem = ({ todo }) => {
             <LuClipboardEdit />
           </IconButton>
           <IconButton
-            onClick={() => dispatch(RemoveTodo(todo.id))}
+            onClick={() => tododelete(todo.id)}
             color="error"
           >
             <MdDelete />
@@ -91,7 +103,7 @@ const TodoItem = ({ todo }) => {
               defaultValue={todo.title}
             />
             <FormControl sx={{ width: "270px" }}>
-              <InputLabel color="success" id="status-label">
+              <InputLabel id="status-label">
                 Status
               </InputLabel>
               <Select
@@ -101,16 +113,27 @@ const TodoItem = ({ todo }) => {
                 labelId="status-label"
                 label="Status"
                 error={errors.status ? true : false}
-                color="success"
                 defaultValue=""
               >
                 <MenuItem value="true">Completed</MenuItem>
                 <MenuItem value="false">Pending</MenuItem>
               </Select>
             </FormControl>
-            <Button type="submit" variant="contained" color="warning">
-              Update ToDO
-            </Button>
+            <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          {/* <Link to="/todo">cancel</Link> */}
+          <Button onClick={() => setOpen(false)} type="text">Cancel</Button>
+          <Button type="submit" variant="contained" color="warning">
+          Update ToDO
+          </Button>
+        </Box>
+            
           </form>
         </Card>
       </Modal>

@@ -66,14 +66,14 @@ const Header = () => {
               <Button startIcon={<HiHome />}>Home</Button>
             </MenuItem>
           </Link>
-          <Link to="/product">
-            <MenuItem onClick={handleClose}>
-              <Button startIcon={<FaShop />}>Products</Button>
-            </MenuItem>
-          </Link>
           <Link to="/todo">
             <MenuItem onClick={handleClose}>
               <Button startIcon={<LuListTodo />}>todo</Button>
+            </MenuItem>
+          </Link>
+          <Link to="/product">
+            <MenuItem onClick={handleClose}>
+              <Button startIcon={<FaShop />}>Products</Button>
             </MenuItem>
           </Link>
           <Link to="/cart">

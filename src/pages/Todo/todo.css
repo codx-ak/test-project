@@ -1,5 +1,6 @@
 .todo{
     min-height: 80vh;
+    overflow-x: hidden;
 }
 .todo form{
     display: flex;

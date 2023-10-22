@@ -21,7 +21,7 @@ import { TodoData } from "../../Api/TodoApi";
 
 const Todo = () => {
   //Todo State
-  const [ToDovalue,setTodo]=useState([])
+  const [ToDovalue,setTodo]=useState([{id:1,title:'lorem'}])
   const {
     register,
     handleSubmit,
@@ -31,12 +31,14 @@ const Todo = () => {
   //todo adding funcion
   function todoadding(e) {
     dispatch(AddTodo(e.title));
-  }
-
-  useEffect(()=>{
     //getting Todo data and update todo store
     TodoData().then(data=>setTodo(data))
-  },[todoadding])
+  }
+
+  // useEffect(()=>{
+  //   //getting Todo data and update todo store
+  //   TodoData().then(data=>setTodo(data))
+  // },[])
   
   return (
     <Container className="todo">
@@ -71,10 +73,13 @@ const Todo = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {ToDovalue &&
+            {ToDovalue.length ?
               ToDovalue.map((data, index) => {
-                return <TodoItem todo={data} key={index} />;
-              })}
+                return <TodoItem todo={{data,setTodo}} key={index} />;
+              }) : <TableRow>
+                <TableCell colSpan={4} align="center"> No Items Available</TableCell>
+              </TableRow>
+              }
           </TableBody>
         </Table>
       </TableContainer>
