@@ -9,7 +9,6 @@ import {
 import React, { useContext } from "react";
 import { FiMenu } from "react-icons/fi";
 import { HiHome } from "react-icons/hi";
-import { FaOpencart, FaShop } from "react-icons/fa6";
 import { BiLogoBlogger } from "react-icons/bi";
 import { IoTrailSignOutline } from "react-icons/io5";
 import { LuListTodo } from "react-icons/lu";
@@ -69,16 +68,6 @@ const Header = () => {
           <Link to="/todo">
             <MenuItem onClick={handleClose}>
               <Button startIcon={<LuListTodo />}>todo</Button>
-            </MenuItem>
-          </Link>
-          <Link to="/product">
-            <MenuItem onClick={handleClose}>
-              <Button startIcon={<FaShop />}>Products</Button>
-            </MenuItem>
-          </Link>
-          <Link to="/cart">
-            <MenuItem onClick={handleClose}>
-              <Button startIcon={<FaOpencart />}>Cart</Button>
             </MenuItem>
           </Link>
           <Link to="/blog">

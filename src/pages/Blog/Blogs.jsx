@@ -1,15 +1,20 @@
 import { Container, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import { BlogData } from "../../Api/BlogsApi";
 import "./blog.css";
 import BlogItem from "./BlogItem";
+import Loading from "../../components/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const Blogs = () => {
-  const [Blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    //blogs data fetch to api and storing to DB
-    BlogData().then((value) => setBlogs(value.articles));
-  }, [Blogs]);
+  const { isLoading, data } = useQuery({
+    queryKey: ["blog"],
+    queryFn: BlogData,
+  });
+
+  const BlogsData = data || [];
+  if (isLoading) return <Loading />;
+
   return (
     <>
       <Typography variant="h3" textAlign="center" paddingBottom="5px">
@@ -19,9 +24,10 @@ const Blogs = () => {
         Lorem Lorem ipsum dolor sit amet. ipsum dolor sit amet.
       </Typography>
       <Container className="blogs">
-        {Blogs ? (
-          Blogs.map((data, index) => {
-          return <BlogItem key={index} blog={data}/>          })
+        {BlogsData.length ? (
+          BlogsData.map((data, index) => {
+            return <BlogItem key={index} blog={data} />;
+          })
         ) : (
           <Typography variant="h5" textAlign="center">
             No Blogs
