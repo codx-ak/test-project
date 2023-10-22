@@ -3,14 +3,14 @@ import Layout from "./routes/Layout";
 import AuthContext from "./Auth/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { QueryClientProvider,QueryClient } from "@tanstack/react-query";
-const clientQuery=new QueryClient();
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+const clientQuery = new QueryClient();
 const App = () => {
   return (
     <QueryClientProvider client={clientQuery}>
       <ToastContainer
         autoClose={3000}
-        style={{width:250}}
+        style={{ width: 250 }}
         position="bottom-left"
         hideProgressBar={false}
         pauseOnFocusLoss={false}

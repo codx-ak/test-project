@@ -2,10 +2,7 @@ import {
   Box,
   Button,
   Card,
-  Checkbox,
   Container,
-  FormControlLabel,
-  FormGroup,
   Modal,
   TextField,
   Typography,
@@ -96,8 +93,10 @@ const Login = () => {
           label="Enter Password"
           type="password"
         />
-        <Button className="hint-btn" onClick={() => setOpen(true)}>Check Hint </Button>
-        
+        <Button className="hint-btn" onClick={() => setOpen(true)}>
+          Check Hint{" "}
+        </Button>
+
         <Box
           sx={{
             width: "100%",
@@ -118,22 +117,14 @@ const Login = () => {
         aria-labelledby="modal-modal-title"
       >
         <Card sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-          >
+          <Typography id="modal-modal-title" variant="h6">
             UserName
           </Typography>
-          <Typography component='p'>user@gmail.com</Typography>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            marginTop={5}
-          >
+          <Typography component="p">user@gmail.com</Typography>
+          <Typography id="modal-modal-title" variant="h6" marginTop={5}>
             Password
           </Typography>
-          <Typography component='p'>1234</Typography>
-          
+          <Typography component="p">1234</Typography>
         </Card>
       </Modal>
     </Container>

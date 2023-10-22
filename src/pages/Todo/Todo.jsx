@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import TodoItem from "./TodoItem";
 
 const Todo = () => {
-    const queryClient=useQueryClient()
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -38,42 +38,48 @@ const Todo = () => {
     queryFn: TodoData,
   });
 
-  const {mutateAsync:addTodoMutation}=useMutation({
+  const { mutateAsync: addTodoMutation } = useMutation({
     mutationFn: AddTodoData,
-    onSuccess:()=> {
-      queryClient.invalidateQueries(['todo'])
-       toast.success("ToDo Added");
-      }
-    })
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todo"]);
+      toast.success("ToDo Added");
+    },
+  });
 
-  const {mutateAsync:updateTodoMutation}=useMutation({
+  const { mutateAsync: updateTodoMutation } = useMutation({
     mutationFn: UpdateTodoData,
-    onSuccess:()=> {
-        queryClient.invalidateQueries(['todo'])
-        toast.success("ToDo Updated");
-    }
-      })
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todo"]);
+      toast.success("ToDo Updated");
+    },
+  });
 
-  const {mutateAsync:deleteTodoMutation}=useMutation({
+  const { mutateAsync: deleteTodoMutation } = useMutation({
     mutationFn: DeleteTodoData,
-    onSuccess:()=>{
-        queryClient.invalidateQueries(['todo'])
-        toast.error("ToDo Deleted");
-    } 
-      })
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todo"]);
+      toast.error("ToDo Deleted");
+    },
+  });
   const ToDoValue = data || [];
 
-  if(isLoading) return <Loading/>
-  
+  if (isLoading) return <Loading />;
+
   return (
     <Container className="todo">
-      <form action="" onSubmit={handleSubmit(data=>addTodoMutation({...data,completed: false}))} method="post">
+      <form
+        action=""
+        onSubmit={handleSubmit((data) =>
+          addTodoMutation({ ...data, completed: false })
+        )}
+        method="post"
+      >
         <TextField
           {...register("title", { required: "Enter title" })}
           error={errors.title ? true : false}
           variant="outlined"
           placeholder="Type here"
-          autoComplete='true'
+          autoComplete="true"
           type="text"
         />
         <Button
@@ -96,8 +102,13 @@ const Todo = () => {
             </TableHead>
             <TableBody>
               {ToDoValue.length ? (
-                ToDoValue.map((todo , index) => {
-                  return <TodoItem options={{ todo,deleteTodoMutation,updateTodoMutation }} key={index} />;
+                ToDoValue.map((todo, index) => {
+                  return (
+                    <TodoItem
+                      options={{ todo, deleteTodoMutation, updateTodoMutation }}
+                      key={index}
+                    />
+                  );
                 })
               ) : (
                 <TableRow>

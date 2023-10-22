@@ -29,9 +29,9 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const TodoItem = ({options}) => {
-    const {todo,deleteTodoMutation,updateTodoMutation}=options
-    const [open, setOpen] = React.useState(false);
+const TodoItem = ({ options }) => {
+  const { todo, deleteTodoMutation, updateTodoMutation } = options;
+  const [open, setOpen] = React.useState(false);
   const {
     register,
     handleSubmit,
@@ -39,27 +39,25 @@ const TodoItem = ({options}) => {
   } = useForm();
 
   function todoupdate(e) {
-    const updateData={
-      title:e.title,
-      completed: e.status === 'true' ? true : false,
-    }
-    updateTodoMutation({id:todo.id,data:updateData})
+    const updateData = {
+      title: e.title,
+      completed: e.status === "true" ? true : false,
+    };
+    updateTodoMutation({ id: todo.id, data: updateData });
     setOpen(false);
   }
   return (
     <React.Fragment>
-      <TableRow hover sx={{cursor:'pointer'}}>
+      <TableRow hover sx={{ cursor: "pointer" }}>
         <TableCell className="title-cell" align="center">
           {todo.title}
         </TableCell>
-        
+
         <TableCell align="center">
           <IconButton onClick={() => setOpen(true)}>
             <LuListTodo />
           </IconButton>
-          <IconButton
-            onClick={() => deleteTodoMutation(todo.id)}
-          >
+          <IconButton onClick={() => deleteTodoMutation(todo.id)}>
             <MdOutlineClear />
           </IconButton>
         </TableCell>
@@ -88,9 +86,7 @@ const TodoItem = ({options}) => {
               defaultValue={todo.title}
             />
             <FormControl sx={{ width: "270px" }}>
-              <InputLabel id="status-label">
-                Status
-              </InputLabel>
+              <InputLabel id="status-label">Status</InputLabel>
               <Select
                 {...register("status", {
                   required: "status Field Required",
@@ -98,31 +94,32 @@ const TodoItem = ({options}) => {
                 labelId="status-label"
                 label="Status"
                 error={errors.status ? true : false}
-                defaultValue={todo.completed ? "true" :'false'}
+                defaultValue={todo.completed ? "true" : "false"}
               >
                 <MenuItem value="true">Completed</MenuItem>
                 <MenuItem value="false">Pending</MenuItem>
               </Select>
             </FormControl>
             <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
-        >
-          <Button onClick={() => setOpen(false)} type="text">Cancel</Button>
-          <Button type="submit" variant="contained" color="warning">
-          Update ToDO
-          </Button>
-        </Box>
-            
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <Button onClick={() => setOpen(false)} type="text">
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" color="warning">
+                Update ToDO
+              </Button>
+            </Box>
           </form>
         </Card>
       </Modal>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default TodoItem
+export default TodoItem;
