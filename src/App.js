@@ -10,6 +10,8 @@ const App = () => {
     <Provider store={store}>
       <ToastContainer
         autoClose={3000}
+        style={{width:250}}
+        position="bottom-left"
         hideProgressBar={false}
         pauseOnFocusLoss={false}
         draggable={false}
