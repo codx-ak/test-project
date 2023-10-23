@@ -1,10 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-//product api from "https://codx-json-server.vercel.app
+//ToDO api URL from "https://codx-json-server.vercel.app
 const API_URL = "https://codx-json-server.vercel.app/todo";
 
 //get method
+//example : https://codx-json-server.vercel.app/todo
 export const TodoData = async () => {
   try {
     const response = await axios.get(API_URL);
@@ -15,6 +16,7 @@ export const TodoData = async () => {
 };
 
 //Post method
+//example : https://codx-json-server.vercel.app/todo
 export const AddTodoData = async (data) => {
   await axios
     .post(API_URL, data, {
@@ -23,19 +25,21 @@ export const AddTodoData = async (data) => {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then(() => toast.success("ToDo Added"))
+    .catch(() => toast.error("Somthing Wrong!"));
 };
 
 //Delete method
+//example : https://codx-json-server.vercel.app/todo/:id
 export const DeleteTodoData = async (id) => {
   await axios
     .delete(`${API_URL}/${id}`)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then(() => toast.error("ToDo Deleted"))
+    .catch(() => toast.error("Somthing Wrong!"));
 };
 
 //Patch method
+//example : https://codx-json-server.vercel.app/todo/:id
 export const UpdateTodoData = async ({id,data}) => {
   await axios
     .patch(`${API_URL}/${id}`, data, {
@@ -44,6 +48,6 @@ export const UpdateTodoData = async ({id,data}) => {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then(() => toast.success("ToDo Updated"))
+    .catch(() => toast.error("Somthing Wrong!"));
 };

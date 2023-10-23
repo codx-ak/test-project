@@ -31,6 +31,8 @@ const style = {
 };
 const TodoItem = ({ options }) => {
   const { todo, deleteTodoMutation, updateTodoMutation } = options;
+
+  // update page 
   const [open, setOpen] = React.useState(false);
   const {
     register,
@@ -38,11 +40,13 @@ const TodoItem = ({ options }) => {
     formState: { errors },
   } = useForm();
 
+  //update form submit
   function todoupdate(e) {
     const updateData = {
       title: e.title,
       completed: e.status === "true" ? true : false,
     };
+    //update function call
     updateTodoMutation({ id: todo.id, data: updateData });
     setOpen(false);
   }

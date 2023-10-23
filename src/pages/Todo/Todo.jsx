@@ -22,7 +22,6 @@ import {
 } from "../../Api/TodoApi";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../components/Loading";
-import { toast } from "react-toastify";
 import TodoItem from "./TodoItem";
 
 const Todo = () => {
@@ -33,32 +32,33 @@ const Todo = () => {
     formState: { errors },
   } = useForm();
 
+  // Get ToDO Data From GET Method
   const { isLoading, data } = useQuery({
     queryKey: ["todo"],
     queryFn: TodoData,
   });
 
+   // Add ToDO Data From POST Method
   const { mutateAsync: addTodoMutation } = useMutation({
     mutationFn: AddTodoData,
     onSuccess: () => {
       queryClient.invalidateQueries(["todo"]);
-      toast.success("ToDo Added");
     },
   });
 
+  // Update ToDO Data From PATCH Method
   const { mutateAsync: updateTodoMutation } = useMutation({
     mutationFn: UpdateTodoData,
     onSuccess: () => {
       queryClient.invalidateQueries(["todo"]);
-      toast.success("ToDo Updated");
     },
   });
 
+  // Delete ToDO Data From DELETE Method
   const { mutateAsync: deleteTodoMutation } = useMutation({
     mutationFn: DeleteTodoData,
     onSuccess: () => {
       queryClient.invalidateQueries(["todo"]);
-      toast.error("ToDo Deleted");
     },
   });
   const ToDoValue = data || [];
@@ -105,6 +105,7 @@ const Todo = () => {
                 ToDoValue.map((todo, index) => {
                   return (
                     <TodoItem
+                    // sending props delete function and update function 
                       options={{ todo, deleteTodoMutation, updateTodoMutation }}
                       key={index}
                     />

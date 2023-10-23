@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-//news api from https://newsapi.org/
+//news api from https://saurav.tech/NewsAPI
 const API_URL =
   "https://saurav.tech/NewsAPI/top-headlines/category/health/in.json";
 
