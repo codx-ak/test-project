@@ -10,6 +10,7 @@ const BlogItem = ({blog}) => {
                 <img
                   width="100%"
                   height={150}
+                  loading='lasy'
                   src={blog.urlToImage}
                   alt={blog.title}
                 />
