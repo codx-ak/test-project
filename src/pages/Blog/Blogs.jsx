@@ -8,11 +8,13 @@ import { useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import ScrollToTop from "react-scroll-to-top";
 
 const Blogs = () => {
+  //active page
   const[activeBtn,setActiveBtn]=useState('general')
 
   const queryClient = useQueryClient();
   const {data:BlogsData}=useQuery({
     queryKey:['blog'],
+    //defualt data fetch
     queryFn:()=>NewsData('general')
   })
 
@@ -24,7 +26,7 @@ const Blogs = () => {
   });
 
 function NewsCategory(e){
-  console.log(e);
+  // selected button to fetch data
   const category=e.target.getAttribute('data-value') || 'general';
   setActiveBtn(category)
   NewsMutation(category)
