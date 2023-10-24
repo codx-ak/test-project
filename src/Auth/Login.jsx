@@ -59,10 +59,10 @@ const Login = () => {
   return (
     <Container className="login">
       <Box className="header-content">
-        <Typography variant="h2" component="h2">
+        <Typography variant="h3">
           Lorem ipsum dolor sit amet.
         </Typography>
-        <Typography component="p">
+        <Typography color={'white'} component="p">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis,
           ipsum. Beatae ab quod quam consectetur velit ullam molestiae
           laboriosam fugiat Lorem ipsum dolor sit amet consectetur adipisicing
