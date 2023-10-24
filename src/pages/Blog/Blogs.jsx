@@ -12,9 +12,9 @@ const Blogs = () => {
   const[activeBtn,setActiveBtn]=useState('general')
 
   const queryClient = useQueryClient();
-  const {data:BlogsData}=useQuery({
+  const {data:BlogsData,isLoading}=useQuery({
     queryKey:['blog'],
-    //defualt data fetch
+    //default data fetch
     queryFn:()=>NewsData('general')
   })
 
@@ -58,9 +58,9 @@ function NewsCategory(e){
         <Button variant={activeBtn==='technology'?'contained':'outlined'} color="error" data-value='technology' onClick={NewsCategory}>technology</Button>
         </Container>
        
-      <Container className="blogs">
+      <Container component='section' className="blogs">
         {
-          isPending && <Loading />
+          (isLoading || isPending) && <Loading />
 
         }
         {BlogsData ? (

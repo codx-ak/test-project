@@ -10,16 +10,26 @@ html {
     overflow-x: hidden !important;
     scroll-behavior: smooth;
 }
-
-h2 {
-    font-weight: 500;
+p{
+    text-align: justify;
+    color: gray;
 }
-
 a {
     text-decoration: none;
     color: inherit;
 }
-
+img{
+    object-fit: contain;
+   overflow: hidden;
+}
+section{
+    display: flex !important;
+    justify-content: space-around;
+    gap: 15px;
+    flex-flow: row wrap;
+    align-items: center;
+    min-height: 80vh;
+}
 @media (min-width:500px) {
     html {
         font-size: 14px !important;

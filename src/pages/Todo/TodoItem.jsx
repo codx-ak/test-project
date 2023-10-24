@@ -76,7 +76,6 @@ const TodoItem = ({ options }) => {
             id="modal-modal-title"
             variant="h5"
             textAlign="center"
-            component="h2"
           >
             Todo
           </Typography>

@@ -1,14 +1,14 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import HomeIMG from '../assets/home.svg'
-import "./home.css";
+
 const Home = () => {
   return (
     <Container>
       <section className="home">
         <img src={HomeIMG} height={450} width='auto' alt="Home" />
-        <Box className="home-content">
-          <Typography variant="h3" component="h3">
+        <Box className="home-content" sx={{width:500}}>
+          <Typography variant="h4">
             Lorem ipsum dolor sit amet.
           </Typography>
           <Typography component="p">

@@ -33,7 +33,7 @@ const Todo = () => {
   } = useForm();
 
   // Get ToDO Data From GET Method
-  const { isLoading, data } = useQuery({
+  const { isLoading, data:ToDoValue } = useQuery({
     queryKey: ["todo"],
     queryFn: TodoData,
   });
@@ -55,15 +55,13 @@ const Todo = () => {
   });
 
   // Delete ToDO Data From DELETE Method
-  const { mutateAsync: deleteTodoMutation } = useMutation({
+  const { mutateAsync: deleteTodoMutation,isPending } = useMutation({
     mutationFn: DeleteTodoData,
     onSuccess: () => {
       queryClient.invalidateQueries(["todo"]);
     },
   });
-  const ToDoValue = data || [];
-
-  if (isLoading) return <Loading />;
+ 
 
   return (
     <Container className="todo">
@@ -75,7 +73,7 @@ const Todo = () => {
         method="post"
       >
         <TextField
-          {...register("title", { required: "Enter title" })}
+          {...register("title", { required: "Enter title",maxLength:{value:15,message:'Maximum 15 Characters'} })}
           error={errors.title ? true : false}
           variant="outlined"
           placeholder="Type here"
@@ -101,7 +99,10 @@ const Todo = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {ToDoValue.length ? (
+              {
+                (isLoading || isPending) && <Loading />
+              }
+              {ToDoValue ? (
                 ToDoValue.map((todo, index) => {
                   return (
                     <TodoItem

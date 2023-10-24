@@ -15,13 +15,13 @@ const BlogItem = ({blog}) => {
                   alt={blog.title}
                 />
                 <Link target="_blank" to={blog.url}>
-                  <Typography variant="h6">{blog.title}</Typography>
-                  <Typography component="p" className="blog-info">
+                  <Typography variant="h6" className='overflow-text'>{blog.title}</Typography>
+                  <Typography component="p" className="blog-info overflow-text">
                     <CiCalendarDate /> {blog.publishedAt.slice(0, 10)}{" "}
                     &nbsp;&nbsp; <BsFillPersonFill />
-                    <span className="auther">{blog.author}</span>
+                    <span className="auther">{blog.author || 'Unknown'}</span>
                   </Typography>
-                  <Typography component="p">{blog.description}</Typography>
+                  <Typography component="p">{blog.description || 'No Description'}</Typography>
                 </Link>
               </Card>
   )
