@@ -8,6 +8,7 @@ const Blog = React.lazy(() => import("../pages/Blog/Blogs"));
 const Login = React.lazy(() => import("../Auth/Login"));
 const Logout = React.lazy(() => import("../Auth/Logout"));
 const Todo = React.lazy(() => import("../pages/Todo/Todo"));
+const Doc = React.lazy(() => import("../pages/Doc"));
 
 const PageRoutes = () => {
   return (
@@ -15,7 +16,7 @@ const PageRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="blog" element={<Blog />} />
-
+        <Route path="doc" element={<Doc />} />
         <Route path="todo" element={<Todo />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />

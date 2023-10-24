@@ -11,6 +11,7 @@ import { FiMenu } from "react-icons/fi";
 import { HiHome } from "react-icons/hi";
 import { BiLogoBlogger } from "react-icons/bi";
 import { IoTrailSignOutline } from "react-icons/io5";
+import { SiAmazondocumentdb } from "react-icons/si";
 import { LuListTodo } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import "./header.css";
@@ -73,6 +74,11 @@ const Header = () => {
           <Link to="/blog">
             <MenuItem onClick={handleClose}>
               <Button startIcon={<BiLogoBlogger />}>Blogs</Button>
+            </MenuItem>
+          </Link>
+          <Link to="/doc">
+            <MenuItem onClick={handleClose}>
+              <Button startIcon={<SiAmazondocumentdb />}>Documentaion</Button>
             </MenuItem>
           </Link>
           {IsAuth ? (
